@@ -3,404 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Student Portal</title>
-    <link rel="stylesheet" href="css/dashboard.css">
+    <title>CareerHigh Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard1.css">
 </head>
 <body>
-    <div class="bg-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">CareerHigh</div>
+            <button class="toggle-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div class="menu-items">
+            <a href="#" class="menu-item">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Courses</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-book"></i>
+                <span>Exam</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Progress</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <span>CareerHigh v1.0</span>
+        </div>
     </div>
 
-    <!-- Header Section -->
-    <header class="dashboard-header">
-        <div class="header-content">
-            <div class="logo-section">
-                <a href="index.php" class="logo-link">
-                    <img src="img/logo.png" alt="Company Logo" class="logo">
-                </a>
-            </div>
-            <div class="user-menu">
-                <div class="user-info">
-                    <span>Welcome, John Doe</span>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header>
+            <div class="notification-wrapper">
+                <button class="notification-btn">
+                    <i class="far fa-bell"></i>
+                    <div class="notification-alert"></div>
+                </button>
+                <div class="notification-box">
+                    <h3>Notifications</h3>
+                    <div class="notification-item">
+                        <p>Your exam schedule has been updated.</p>
+                        <small>10 minutes ago</small>
+                    </div>
+                    <div class="notification-item">
+                        <p>New mentor message received.</p>
+                        <small>45 minutes ago</small>
+                    </div>
+                    <div class="notification-item">
+                        <p>Your profile is 80% complete.</p>
+                        <small>2 hours ago</small>
+                    </div>
                 </div>
-                <a href="login.php" class="cta-button">⏻Logout</a>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard">
+            <div class="welcome-banner">
+                <h1>Welcome back, Sarah!</h1>
+                <p>Here's what's happening with your career development today.</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Personal Details Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-user-circle"></i>
+                        <h2>Personal Details</h2>
+                    </div>
+                    <div class="detail-item">
+                        <label>Full Name</label>
+                        <p>Sarah Johnson</p>
+                    </div>
+                    <div class="detail-item">
+                        <label>Email</label>
+                        <p>sarah.j@example.com</p>
+                    </div>
+                    <div class="detail-item">
+                        <label>Phone</label>
+                        <p>+1 (234) 567-8901</p>
+                    </div>
+                    <div class="detail-item">
+                        <label>Location</label>
+                        <p>New York, USA</p>
+                    </div>
+                </div>
+
+                <!-- Mentor Details Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h2>Mentor Details</h2>
+                    </div>
+                    <div class="detail-item">
+                        <label>Mentor Name</label>
+                        <p>Dr. Michael Chen</p>
+                    </div>
+                    <div class="detail-item">
+                        <label>Specialization</label>
+                        <p>Data Science & AI</p>
+                    </div>
+                    <div class="detail-item">
+                        <label>Email</label>
+                        <p>michael.chen@example.com</p>
+                    </div>
+                    <div class="detail-item">
+                        <label>Next Session</label>
+                        <p>June 15, 2025 at 3:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar -->
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <h2 id="calTitle">June 2025</h2>
+                    <div class="month-nav">
+                        <button id="prev"><i class="fas fa-chevron-left"></i></button>
+                        <button id="next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div id="calendar">
+                    <!-- Calendar will be rendered by JavaScript -->
+                </div>
             </div>
         </div>
-    </header>
 
-    <!-- Main Dashboard Content -->
-    <main class="dashboard-main">
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 CareerHigh. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        const toggleBtn = document.querySelector('.toggle-btn');
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
         
-        <!-- User Profile & Quick Access Section -->
-        <section class="profile-quick-access">
-            <div class="user-profile-card">
-                <div class="profile-image">
-                    <img src="img/anonymous.jpg" alt="User Profile" class="profile-img">
-                    <!-- <button class="edit-profile-img">
-                        <i class="fas fa-camera"></i>
-                    </button> -->
-                </div>
-                <div class="profile-info">
-                    <h2>John Doe</h2>
-                    <p class="user-email">john.doe@example.com</p>
-                    <p class="user-program">Computer Science - Fall 2024</p>
-                </div>
-                <button class="edit-btn">
-                    <i class="fas fa-edit"></i>
-                    Edit Profile
-                </button>
-            </div>
-
-            <div class="quick-access-cards">
-                <div class="quick-card">
-                    <div class="quick-icon">
-                        <i class="fas fa-route"></i>
-                    </div>
-                    <h3>Predefined Roadmap</h3>
-                    <p>Follow your personalized study plan</p>
-                    <button class="quick-btn">View Roadmap</button>
-                </div>
-
-                <div class="quick-card">
-                    <div class="quick-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Find Mentors</h3>
-                    <p>Connect with experienced mentors</p>
-                    <button class="quick-btn">Browse Mentors</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- User Details & Mentor Details Section -->
-        <section class="details-section">
-            <div class="user-details-card blurred-container">
-                <div class="card-header">
-                    <h3><i class="fas fa-user"></i> Personal Details</h3>
-                    <button class="edit-btn">
-                        <i class="fas fa-edit"></i>
-                        Edit
-                    </button>
-                </div>
-                <div class="details-grid">
-                    <div class="detail-item">
-                        <label>Full Name:</label>
-                        <span>John Doe</span>
-                    </div>
-                    <div class="detail-item">
-                        <label>Date of Birth:</label>
-                        <span>March 15, 1998</span>
-                    </div>
-                    <div class="detail-item">
-                        <label>Phone Number:</label>
-                        <span>+1 (555) 123-4567</span>
-                    </div>
-                    <div class="detail-item">
-                        <label>Address:</label>
-                        <span>123 Student Street, University City</span>
-                    </div>
-                    <div class="detail-item">
-                        <label>Emergency Contact:</label>
-                        <span>Jane Doe - +1 (555) 987-6543</span>
-                    </div>
-                    <div class="detail-item">
-                        <label>Intended Major:</label>
-                        <span>Computer Science</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mentor-details-card blurred-container">
-                <div class="card-header">
-                    <h3><i class="fas fa-chalkboard-teacher"></i> Assigned Mentor</h3>
-                    <button class="edit-btn">
-                        <i class="fas fa-edit"></i>
-                        Change
-                    </button>
-                </div>
-                <div class="mentor-info">
-                    <div class="mentor-avatar">
-                        <img src="img/Sheikh-Hasina.jpg" alt="Mentor" class="mentor-img">
-                    </div>
-                    <div class="mentor-details">
-                        <h4>Dr. Sarah Wilson</h4>
-                        <p class="mentor-title">Senior Academic Advisor</p>
-                        <p class="mentor-specialization">Computer Science & Engineering</p>
-                        <div class="mentor-stats">
-                            <span class="stat">
-                                <i class="fas fa-star"></i>
-                                4.9 Rating
-                            </span>
-                            <span class="stat">
-                                <i class="fas fa-users"></i>
-                                150+ Students
-                            </span>
-                        </div>
-                        <div class="mentor-actions">
-                            <button class="contact-btn">
-                                <i class="fas fa-message"></i>
-                                Message
-                            </button>
-                            <button class="schedule-btn">
-                                <i class="fas fa-calendar"></i>
-                                Schedule Call
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Roadmap Section -->
-        <section class="roadmap-section">
-            <div class="roadmap-card blurred-container">
-                <div class="card-header">
-                    <h3><i class="fas fa-map-marked-alt"></i> Your Study Roadmap</h3>
-                    <button class="edit-btn">
-                        <i class="fas fa-edit"></i>
-                        Customize
-                    </button>
-                </div>
-                <div class="roadmap-tasks">
-                    <div class="task-category">
-                        <h4>Application Preparation</h4>
-                        <div class="tasks-list">
-                            <label class="task-item">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                                Task name
-                            </label>
-
-                            <label class="task-item completed">
-                                <input type="checkbox" checked>
-                                <span class="checkmark"></span>
-                                Research Universities
-                            </label>
-                            <label class="task-item completed">
-                                <input type="checkbox" checked>
-                                <span class="checkmark"></span>
-                                Prepare Personal Statement
-                            </label>
-                            <label class="task-item">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                                Request Letters of Recommendation
-                            </label>
-                            <label class="task-item">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                                Complete Application Forms
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="task-category">
-                        <h4>Test Preparation</h4>
-                        <div class="tasks-list">
-                            <label class="task-item completed">
-                                <input type="checkbox" checked>
-                                <span class="checkmark"></span>
-                                IELTS Preparation
-                            </label>
-                            <label class="task-item">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                                GRE Preparation
-                            </label>
-                            <label class="task-item">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                                Practice Tests
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="task-category">
-                        <h4>Financial Planning</h4>
-                        <div class="tasks-list">
-                            <label class="task-item">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                                Research Scholarships
-                            </label>
-                            <label class="task-item">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                                Prepare Financial Documents
-                            </label>
-                            <label class="task-item">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                                Apply for Student Loans
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Deadlines, Documents & Activities Section -->
-        <section class="bottom-section">
-            <!-- Exam Deadlines -->
-            <div class="deadlines-card blurred-container">
-                <div class="card-header">
-                    <h3><i class="fas fa-clock"></i> Upcoming Deadlines</h3>
-                    <button class="edit-btn">
-                        <i class="fas fa-edit"></i>
-                        Edit
-                    </button>
-                </div>
-                <div class="deadlines-list">
-                    <div class="deadline-item urgent">
-                        <div class="deadline-info">
-                            <h4>GRE Exam</h4>
-                            <p>General Test</p>
-                        </div>
-                        <div class="deadline-date">
-                            <span class="date">Dec 15</span>
-                            <span class="days">5 days</span>
-                        </div>
-                    </div>
-                    <div class="deadline-item warning">
-                        <div class="deadline-info">
-                            <h4>University Application</h4>
-                            <p>Stanford University</p>
-                        </div>
-                        <div class="deadline-date">
-                            <span class="date">Jan 1</span>
-                            <span class="days">22 days</span>
-                        </div>
-                    </div>
-                    <div class="deadline-item normal">
-                        <div class="deadline-info">
-                            <h4>FAFSA Submission</h4>
-                            <p>Financial Aid</p>
-                        </div>
-                        <div class="deadline-date">
-                            <span class="date">Feb 15</span>
-                            <span class="days">67 days</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Co-curricular Activities -->
-            <div class="activities-card blurred-container">
-                <div class="card-header">
-                    <h3><i class="fas fa-trophy"></i> Co-curricular Activities</h3>
-                    <button class="edit-btn">
-                        <i class="fas fa-edit"></i>
-                        Edit
-                    </button>
-                </div>
-                
-                <div class="activities-section">
-                    <h4>Suggested Activities</h4>
-                    <div class="activities-list">
-                        <label class="activity-item">
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            Join Computer Science Club
-                        </label>
-                        <label class="activity-item">
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            Participate in Hackathons
-                        </label>
-                        <label class="activity-item">
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            Volunteer at Tech Events
-                        </label>
-                    </div>
-                </div>
-
-                <div class="activities-section">
-                    <h4>Your Activities</h4>
-                    <div class="activities-list">
-                        <label class="activity-item completed">
-                            <input type="checkbox" checked>
-                            <span class="checkmark"></span>
-                            Programming Club Member
-                        </label>
-                        <label class="activity-item completed">
-                            <input type="checkbox" checked>
-                            <span class="checkmark"></span>
-                            Math Tutor (Volunteer)
-                        </label>
-                        <label class="activity-item">
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            Research Assistant
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Document Checklist -->
-            <div class="documents-card blurred-container">
-                <div class="card-header">
-                    <h3><i class="fas fa-file-check"></i> Document Status</h3>
-                    <button class="edit-btn">
-                        <i class="fas fa-edit"></i>
-                        Update
-                    </button>
-                </div>
-                <div class="documents-list">
-                    <div class="document-item completed">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Transcripts</span>
-                        <div class="doc-status verified">Verified</div>
-                    </div>
-                    <div class="document-item completed">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Personal Statement</span>
-                        <div class="doc-status verified">Verified</div>
-                    </div>
-                    <div class="document-item pending">
-                        <i class="fas fa-clock"></i>
-                        <span>Letters of Recommendation</span>
-                        <div class="doc-status pending">Pending</div>
-                    </div>
-                    <div class="document-item missing">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <span>Financial Documents</span>
-                        <div class="doc-status missing">Missing</div>
-                    </div>
-                    <div class="document-item completed">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Test Scores</span>
-                        <div class="doc-status verified">Verified</div>
-                    </div>
-                    <div class="document-item pending">
-                        <i class="fas fa-clock"></i>
-                        <span>Resume/CV</span>
-                        <div class="doc-status pending">Under Review</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="dashboard-footer">
-        <p>&copy; 2025 CarrerHigh Student Portal. All rights reserved.</p>
-    </footer>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.task-item').forEach(function(task) {
-        task.addEventListener('click', function() {
-            task.classList.toggle('completed');
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
         });
-    });
-});
-</script>
+        
+        // Notification functionality
+        const notificationBtn = document.querySelector('.notification-btn');
+        const notificationBox = document.querySelector('.notification-box');
+        
+        notificationBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notificationBox.classList.toggle('active');
+        });
+        
+        // Close notification when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!notificationBox.contains(e.target) && !notificationBtn.contains(e.target)) {
+                notificationBox.classList.remove('active');
+            }
+        });
+        
+        // Calendar functionality
+        (function(){
+            const calRoot = document.getElementById('calendar');
+            const title = document.getElementById('calTitle');
+            const prevBtn = document.getElementById('prev');
+            const nextBtn = document.getElementById('next');
 
+            let dt = new Date(); // user's local date
+            let year = dt.getFullYear();
+            let month = dt.getMonth(); // 0-indexed
+
+            function renderCalendar(y, m){
+                calRoot.innerHTML = '';
+                const firstDay = new Date(y, m, 1).getDay(); // 0 = Sun
+                const daysInMonth = new Date(y, m+1, 0).getDate();
+
+                // Update title
+                const monthNames = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"];
+                title.textContent = `${monthNames[m]} ${y}`;
+
+                // header: weekdays (Mon..Sun)
+                const weekdays = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+                const wkRow = document.createElement('div');
+                wkRow.className = 'wk-row';
+                weekdays.forEach(w => {
+                    const el = document.createElement('div');
+                    el.className = 'wkcell';
+                    el.textContent = w;
+                    wkRow.appendChild(el);
+                });
+                calRoot.appendChild(wkRow);
+
+                // grid
+                const grid = document.createElement('div');
+                grid.className = 'cal-grid';
+
+                // Add empty cells for days before the first day of month
+                // Adjusting for Monday as first day (firstDay=1 is Monday)
+                let startOffset = firstDay === 0 ? 6 : firstDay - 1; // If Sunday, offset is 6
+                for(let i = 0; i < startOffset; i++){
+                    const emptyCell = document.createElement('div');
+                    emptyCell.className = 'cal-cell other-month';
+                    // Show previous month's dates
+                    const prevMonth = new Date(y, m, 0);
+                    const prevMonthDays = prevMonth.getDate();
+                    emptyCell.textContent = prevMonthDays - (startOffset - i - 1);
+                    grid.appendChild(emptyCell);
+                }
+
+                // Add current month days
+                const today = new Date();
+                for(let i = 1; i <= daysInMonth; i++){
+                    const cell = document.createElement('div');
+                    cell.className = 'cal-cell';
+                    cell.textContent = i;
+                    
+                    // Highlight today
+                    if(i === today.getDate() && m === today.getMonth() && y === today.getFullYear()){
+                        cell.classList.add('today');
+                    }
+                    
+                    grid.appendChild(cell);
+                }
+
+                // Add empty cells for days after the last day of month
+                const totalCells = 42; // 6 rows x 7 days
+                const remainingCells = totalCells - (startOffset + daysInMonth);
+                for(let i = 1; i <= remainingCells; i++){
+                    const emptyCell = document.createElement('div');
+                    emptyCell.className = 'cal-cell other-month';
+                    emptyCell.textContent = i;
+                    grid.appendChild(emptyCell);
+                }
+
+                calRoot.appendChild(grid);
+            }
+
+            // Event listeners for navigation
+            prevBtn.addEventListener('click', () => {
+                month--;
+                if(month < 0){
+                    month = 11;
+                    year--;
+                }
+                renderCalendar(year, month);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                month++;
+                if(month > 11){
+                    month = 0;
+                    year++;
+                }
+                renderCalendar(year, month);
+            });
+
+            // Initial render
+            renderCalendar(year, month);
+        })();
+    </script>
 </body>
 </html>
-

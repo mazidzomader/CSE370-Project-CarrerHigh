@@ -43,7 +43,7 @@
                 </label>
             </div>
 
-            <button type="submit" class="login-btn">Create Account</button>
+            <button type="submit" class="login-btn" style="margin-bottom: 10px;" >Create Account</button>
         </form>
 
         <!-- <div class="divider">

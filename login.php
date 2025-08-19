@@ -38,12 +38,10 @@
                 <a href="forgot_pass.php" class="forgot-password">Forgot password?</a>
             </div>
 
-            <button type="submit" class="login-btn">Log in</button>
+            <button type="submit" class="login-btn" style="margin-bottom:20px;">Log in</button>
         </form>
 
-        <div class="divider">
-             
-        </div>
+        
 
         <div class="social-login">
             <a href="index.php" class="social-btn">Home</a>

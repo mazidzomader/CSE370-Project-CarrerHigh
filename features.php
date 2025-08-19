@@ -23,9 +23,9 @@
             </div>
             <div class="nav-right">
                 <a href="index.php" class="nav-link">Home</a>
-                <a href="features.php" class="nav-link">Features</a>
+                <!-- <a href="features.php" class="nav-link">Features</a> -->
                 <a href="#community" class="nav-link">Community</a>
-                <a href="login.php" class="cta-button">Login/Register Now</a>
+                <a href="login.php" class = "cta-button">Login/Signup</a>
             </div>
         </div>
     </nav>
