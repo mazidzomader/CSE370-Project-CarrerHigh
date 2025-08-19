@@ -1,5 +1,5 @@
 # <h1 align = "center"> CarrerHigh </h1>
----
+
 ## <h2 align = "center">Career Roadmap Management </h2>
  
 <p align="center"><i>Course Code: CSE370</i></p>
