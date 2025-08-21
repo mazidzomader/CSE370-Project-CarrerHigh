@@ -42,11 +42,11 @@
 | 3  | Delete Tasks                                   | Delete                                            | Remove completed/unwanted tasks. |
 | 4  | Research Ideas                                 | Create, Update                                    | Title, domain/tags, abstract/notes. |
 | 5  | Delete Research Ideas                          | Delete                                            | Remove outdated ideas. |
-| 6  | Document Tracking `{completed, pending}`       | Create, Update                                    | Upload/URL, status toggle. |
-| 7  | Exam Tracking `{completed(name, result), pending(name, date)}` | Create, Update                     | Store outcomes and schedules. |
+| 6  | Document Tracking       | Create, Update                                    | Upload/URL, status toggle. |
+| 7  | Exam Tracking  | Create, Update                     | Store outcomes and schedules. |
 | 8  | Exam Date Alarm                                | Read                                              | Read-side alerts from stored dates. |
 | 9  | Co-curricular Activities Store                 | Create, Read                                      | Log events, roles, certificates. |
-| 10 | Research Collaboration `{Creator Post, Filtration, Collab}` | Create, Read, Update                 | Post openings, filter by skill, manage requests. |
+| 10 | Research Collaboration  | Create, Read, Update                 | Post openings, filter by skill, manage requests. |
 
 ---
 
