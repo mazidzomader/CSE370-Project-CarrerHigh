@@ -25,9 +25,9 @@
                 <i class="fas fa-user"></i>
                 <span>Profile</span>
             </a>
-            <a href="#" class="menu-item">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Courses</span>
+            <a href="UniversityFilter.php" class="menu-item">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                <span>Search University</span>
             </a>
             <a href="#" class="menu-item">
                 <i class="fas fa-book"></i>
