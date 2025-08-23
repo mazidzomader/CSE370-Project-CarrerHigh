@@ -37,9 +37,9 @@
                 <i class="fas fa-chart-line"></i>
                 <span>Progress</span>
             </a>
-            <a href="#" class="menu-item">
-                <i class="fas fa-cog"></i>
-                <span>Settings</span>
+            <a href="MentorFilter.php" class="menu-item">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>Mentors Available</span>
             </a>
         </div>
         <div class="sidebar-footer">
