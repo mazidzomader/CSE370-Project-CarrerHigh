@@ -81,6 +81,7 @@
 ![Homepage](img/Homepage.png)
 ![Features](img/Features.png)
 ![Login](img/Login.png)
+![Signup](img/Signup.png)
 ![Dashboard](img/Dashboard.png)
 
 
