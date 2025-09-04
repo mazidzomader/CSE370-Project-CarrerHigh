@@ -106,15 +106,7 @@ $conn->close();
     <?php if ($user_type === 'Mentor'): ?>
     <!-- Sidebar -->
     <div class="main-content">
-        <!-- Header -->
-        <header>
-            <div class="notification-wrapper">
-                <button class="notification-btn">
-                    <i class="far fa-bell"></i>
-                    <div class="notification-alert"></div>
-                </button>
-            </div>
-        </header>
+
 
     <div class="sidebar">
         <div class="sidebar-header">

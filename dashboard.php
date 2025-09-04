@@ -100,48 +100,65 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareerHigh Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/dash board.css">
 </head>
 <body>
     <?php if ($user_type === 'Student'): ?>
     <!-- Sidebar -->
     <div class="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">CareerHigh</div>
-            <button class="toggle-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-        <div class="menu-items">
-            <a href="#" class="menu-item">
-                <i class="fas fa-home"></i>
-                <span>Dashboard</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-            </a>
-            <a href="UniversityFilter.php" class="menu-item">
-                <i class="fa fa-university" aria-hidden="true"></i>
-                <span>Search University</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i class="fas fa-book"></i>
-                <span>Exam</span>
-            </a>
-            <a href="#" class="menu-item">
-                <i class="fas fa-chart-line"></i>
-                <span>Progress</span>
-            </a>
-            <a href="MentorFilter.php" class="menu-item">
-                <i class="fa-solid fa-chalkboard-user"></i>
-                <span>Mentors Available</span>
-            </a>
-        </div>
-        <div class="sidebar-footer">
-            <span>CareerHigh v1.0</span>
-        </div>
+    <div class="sidebar-header">
+        <div class="logo">CareerHigh</div>
+        <button class="toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
+    <div class="menu-items">
+        <a href="dashboard.php" class="menu-item">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="studentProfile.php" class="menu-item">
+            <i class="fas fa-user"></i>
+            <span>Edit Profile</span>
+        </a>
+        <a href="UniversityFilter.php" class="menu-item">
+            <i class="fa-solid fa-road"></i>
+            <span>Roadmap</span>
+        </a>
+        <a href="UniversityFilter.php" class="menu-item">
+            <i class="fa fa-university" aria-hidden="true"></i>
+            <span>Search University</span>
+        </a>
+        <a href="research_idea.php" class="menu-item">
+            <i class="fa-solid fa-lightbulb"></i>
+            <span>Research Idea</span>
+        </a>
+        <a href="#" class="menu-item">
+            <i class="fa-solid fa-passport"></i>
+            <span>Documents</span>
+        </a>
+        <a href="#" class="menu-item">
+            <i class="fa-solid fa-file-pen"></i>
+            <span>Exam</span>
+        </a>
+        <a href="#" class="menu-item">
+                <i class="bi bi-activity"></i>
+            <span>Activity</span>
+        </a>
+        <a href="#" class="menu-item">
+                <i class="fas fa-handshake"></i>
+            <span>Collaboration</span>
+        </a>
+        <a href="MentorFilter.php" class="menu-item">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Mentors Available</span>
+        </a>
+    </div>
+    <div class="sidebar-footer">
+        <span>CareerHigh<br>v1.0</span>
+    </div>
+</div>
 
     <div class="main-content">
 
