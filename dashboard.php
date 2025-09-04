@@ -146,7 +146,11 @@ $conn->close();
                 <i class="bi bi-activity"></i>
             <span>Activity</span>
         </a>
-        <a href="#" class="menu-item">
+        <a href="MyCollab.php" class="menu-item">
+                <i class="fas fa-handshake"></i>
+            <span>My Collaboration</span>
+        </a>
+        <a href="ResearchCollaboration.php" class="menu-item">
                 <i class="fas fa-handshake"></i>
             <span>Collaboration</span>
         </a>
