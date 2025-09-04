@@ -138,7 +138,7 @@ $conn->close();
             <i class="fa-solid fa-passport"></i>
             <span>Documents</span>
         </a>
-        <a href="#" class="menu-item">
+        <a href="ExamTracker.php" class="menu-item">
             <i class="fa-solid fa-file-pen"></i>
             <span>Exam</span>
         </a>
