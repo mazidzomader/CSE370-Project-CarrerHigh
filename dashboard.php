@@ -70,15 +70,20 @@ if (isset($_POST['unassign_mentor']) && isset($_POST['unassign_mentor_id']) && i
     $stmt1->bind_param("i", $studentID);
 
     if ($stmt1->execute()) {
-        // Step 2: Delete from MENTOR_STUDENT_RELATIONSHIP
+    // Step 2: Delete from MENTOR_STUDENT_RELATIONSHIP
         $deleteRelation = "DELETE FROM MENTOR_STUDENT_RELATIONSHIP WHERE MentorID = ? AND StudentID = ?";
         $stmt2 = $conn->prepare($deleteRelation);
         $stmt2->bind_param("ii", $mentorID, $studentID);
-        $stmt2->execute();
+    
+        if ($stmt2->execute()) {
+            echo "<script>alert('Mentor unassigned successfully'); window.location.href='dashboard.php';</script>";
+        } 
+        else {
+            echo "<script>alert('Error deleting relationship: " . $stmt2->error . "');</script>";
+        }
         $stmt2->close();
-
-        echo "<script>alert('Mentor unassigned successfully'); window.location.href='dashboard.php';</script>";
-    } else {
+    } 
+    else {
         echo "<script>alert('Error while unassigning mentor: " . $conn->error . "');</script>";
     }
     $stmt1->close();
@@ -122,7 +127,7 @@ $conn->close();
             <i class="fas fa-user"></i>
             <span>Edit Profile</span>
         </a>
-        <a href="UniversityFilter.php" class="menu-item">
+        <a href="Roadmap.php" class="menu-item">
             <i class="fa-solid fa-road"></i>
             <span>Roadmap</span>
         </a>
