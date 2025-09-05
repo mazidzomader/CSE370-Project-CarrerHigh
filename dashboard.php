@@ -159,8 +159,8 @@ $conn->close();
             <span>My Collaboration</span>
         </a>
         <a href="ResearchCollaboration.php" class="menu-item">
-                <i class="fas fa-handshake"></i>
-            <span>Collaboration</span>
+                <i class="fas fa-puzzle-piece"></i>
+            <span>Project Collaboration</span>
         </a>
         <a href="MentorFilter.php" class="menu-item">
             <i class="fa-solid fa-chalkboard-user"></i>

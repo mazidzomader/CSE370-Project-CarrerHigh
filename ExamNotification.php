@@ -24,6 +24,7 @@ $sql = "SELECT * FROM exams
         WHERE user_id = $user_id 
         AND date >= CURDATE() 
         AND date <= DATE_ADD(CURDATE(), INTERVAL 7 DAY) 
+        AND result IS NULL
         ORDER BY date ASC";
 
 $result = $conn->query($sql);
