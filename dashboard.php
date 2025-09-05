@@ -126,6 +126,10 @@ $conn->close();
             <i class="fa-solid fa-road"></i>
             <span>Roadmap</span>
         </a>
+        <a href="Task.php" class="menu-item">
+            <i class="fa-solid fa-road"></i>
+            <span>Tasks</span>
+        </a>
         <a href="UniversityFilter.php" class="menu-item">
             <i class="fa fa-university" aria-hidden="true"></i>
             <span>Search University</span>
@@ -138,9 +142,13 @@ $conn->close();
             <i class="fa-solid fa-passport"></i>
             <span>Documents</span>
         </a>
+        <a href="ExamNotification.php" class="menu-item">
+            <i class='fas fa-bell'></i>
+            <span>Upcoming Exam</span>
+        </a>
         <a href="ExamTracker.php" class="menu-item">
             <i class="fa-solid fa-file-pen"></i>
-            <span>Exam</span>
+            <span>Exam Tracker</span>
         </a>
         <a href="#" class="menu-item">
                 <i class="bi bi-activity"></i>

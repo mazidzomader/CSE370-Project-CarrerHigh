@@ -252,10 +252,10 @@ $conn->close();
                                     <p><i class="fas fa-graduation-cap"></i> <?php echo htmlspecialchars($student['Degree_Programme'] ?? 'N/A'); ?></p>
                                     <p><i class="fas fa-calendar"></i> Mentoring since: <?php echo htmlspecialchars($student['Assignment_Date']); ?></p>
                                 </div>
-                                <button class="view-btn" onclick="viewStudentDetails(<?php echo htmlspecialchars(json_encode($student)); ?>)">
+                                <!-- <button class="view-btn" onclick="viewStudentDetails(<?php echo htmlspecialchars(json_encode($student)); ?>)">
                                     <i class="fas fa-eye"></i>
                                     View Details
-                                </button>
+                                </button> -->
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -265,17 +265,17 @@ $conn->close();
 
         <!-- Calendar -->
         <div class="calendar-container">
-            <div class="calendar-header">
-                <h2 id="calTitle">June 2025</h2>
-                <div class="month-nav">
-                    <button id="prev"><i class="fas fa-chevron-left"></i></button>
-                    <button id="next"><i class="fas fa-chevron-right"></i></button>
+                <div class="calendar-header">
+                    <h2 id="calTitle">June 2025</h2>
+                    <div class="month-nav">
+                        <button id="prev"><i class="fas fa-chevron-left"></i></button>
+                        <button id="next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div id="calendar">
+                    <!-- Calendar will be rendered by JavaScript -->
                 </div>
             </div>
-            <div id="calendar">
-                <!-- Calendar will be rendered by JavaScript -->
-            </div>
-        </div>
 
         <!-- Footer -->
         <footer>
@@ -301,43 +301,60 @@ $conn->close();
         const toggleBtn = document.querySelector('.toggle-btn');
         const sidebar = document.querySelector('.sidebar');
         const mainContent = document.querySelector('.main-content');
-        
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-            mainContent.classList.toggle('expanded');
-        });
-        
+
+        if (toggleBtn && sidebar && mainContent) {
+            toggleBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('expanded');
+            });
+        }
+
         // Notification functionality
         const notificationBtn = document.querySelector('.notification-btn');
-        
-        notificationBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            // Add notification functionality here
-        });
-        
-        // Calendar functionality (unchanged from original)
-        (function(){
+        if (notificationBtn) {
+            notificationBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // Add notification functionality here
+            });
+        }
+
+        // Calendar functionality - FIXED VERSION
+        document.addEventListener('DOMContentLoaded', function() {
             const calRoot = document.getElementById('calendar');
             const title = document.getElementById('calTitle');
             const prevBtn = document.getElementById('prev');
             const nextBtn = document.getElementById('next');
 
-            let dt = new Date(); // user's local date
-            let year = dt.getFullYear();
-            let month = dt.getMonth(); // 0-indexed
+            console.log('Calendar elements:', { calRoot, title, prevBtn, nextBtn }); // Debug log
 
-            function renderCalendar(y, m){
+            if (!calRoot || !title || !prevBtn || !nextBtn) {
+                console.error('Calendar elements not found:', {
+                    calRoot: !!calRoot,
+                    title: !!title,
+                    prevBtn: !!prevBtn,
+                    nextBtn: !!nextBtn
+                });
+                return;
+            }
+
+            let dt = new Date();
+            let year = dt.getFullYear();
+            let month = dt.getMonth();
+
+            function renderCalendar(y, m) {
+                console.log('Rendering calendar for:', y, m); // Debug log
+                
                 calRoot.innerHTML = '';
-                const firstDay = new Date(y, m, 1).getDay(); // 0 = Sun
-                const daysInMonth = new Date(y, m+1, 0).getDate();
+                const firstDay = new Date(y, m, 1).getDay();
+                const daysInMonth = new Date(y, m + 1, 0).getDate();
 
                 // Update title
                 const monthNames = ["January", "February", "March", "April", "May", "June",
                     "July", "August", "September", "October", "November", "December"];
                 title.textContent = `${monthNames[m]} ${y}`;
 
-                // header: weekdays (Mon..Sun)
-                const weekdays = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+                // Create weekday headers
+                const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
                 const wkRow = document.createElement('div');
                 wkRow.className = 'wk-row';
                 weekdays.forEach(w => {
@@ -348,17 +365,15 @@ $conn->close();
                 });
                 calRoot.appendChild(wkRow);
 
-                // grid
+                // Create calendar grid
                 const grid = document.createElement('div');
                 grid.className = 'cal-grid';
 
                 // Add empty cells for days before the first day of month
-                // Adjusting for Monday as first day (firstDay=1 is Monday)
-                let startOffset = firstDay === 0 ? 6 : firstDay - 1; // If Sunday, offset is 6
-                for(let i = 0; i < startOffset; i++){
+                let startOffset = firstDay === 0 ? 6 : firstDay - 1;
+                for (let i = 0; i < startOffset; i++) {
                     const emptyCell = document.createElement('div');
                     emptyCell.className = 'cal-cell other-month';
-                    // Show previous month's dates
                     const prevMonth = new Date(y, m, 0);
                     const prevMonthDays = prevMonth.getDate();
                     emptyCell.textContent = prevMonthDays - (startOffset - i - 1);
@@ -367,23 +382,23 @@ $conn->close();
 
                 // Add current month days
                 const today = new Date();
-                for(let i = 1; i <= daysInMonth; i++){
+                for (let i = 1; i <= daysInMonth; i++) {
                     const cell = document.createElement('div');
                     cell.className = 'cal-cell';
                     cell.textContent = i;
-                    
+
                     // Highlight today
-                    if(i === today.getDate() && m === today.getMonth() && y === today.getFullYear()){
+                    if (i === today.getDate() && m === today.getMonth() && y === today.getFullYear()) {
                         cell.classList.add('today');
                     }
-                    
+
                     grid.appendChild(cell);
                 }
 
                 // Add empty cells for days after the last day of month
-                const totalCells = 42; // 6 rows x 7 days
+                const totalCells = 42;
                 const remainingCells = totalCells - (startOffset + daysInMonth);
-                for(let i = 1; i <= remainingCells; i++){
+                for (let i = 1; i <= remainingCells; i++) {
                     const emptyCell = document.createElement('div');
                     emptyCell.className = 'cal-cell other-month';
                     emptyCell.textContent = i;
@@ -395,8 +410,9 @@ $conn->close();
 
             // Event listeners for navigation
             prevBtn.addEventListener('click', () => {
+                console.log('Previous month clicked'); // Debug log
                 month--;
-                if(month < 0){
+                if (month < 0) {
                     month = 11;
                     year--;
                 }
@@ -404,8 +420,9 @@ $conn->close();
             });
 
             nextBtn.addEventListener('click', () => {
+                console.log('Next month clicked'); // Debug log
                 month++;
-                if(month > 11){
+                if (month > 11) {
                     month = 0;
                     year++;
                 }
@@ -413,63 +430,8 @@ $conn->close();
             });
 
             // Initial render
+            console.log('Initial calendar render'); // Debug log
             renderCalendar(year, month);
-        })();
-
-        // Modal functionality for student details
-        const modal = document.getElementById('studentModal');
-        const closeBtn = document.querySelector('.close');
-
-        function viewStudentDetails(student) {
-            const content = document.getElementById('studentDetailsContent');
-            content.innerHTML = `
-                <div class="modal-detail-item">
-                    <label>Student Name:</label>
-                    <span>${student.StudentName}</span>
-                </div>
-                <div class="modal-detail-item">
-                    <label>Email:</label>
-                    <span>${student.StudentEmail}</span>
-                </div>
-                <div class="modal-detail-item">
-                    <label>Student ID:</label>
-                    <span>${student.UserID}</span>
-                </div>
-                <div class="modal-detail-item">
-                    <label>Degree Programme:</label>
-                    <span>${student.Degree_Programme || 'N/A'}</span>
-                </div>
-                <div class="modal-detail-item">
-                    <label>Registration Date:</label>
-                    <span>${student.Registration_Date}</span>
-                </div>
-                <div class="modal-detail-item">
-                    <label>Mentoring Since:</label>
-                    <span>${student.Assignment_Date}</span>
-                </div>
-                <div class="modal-detail-item">
-                    <label>Relationship Status:</label>
-                    <span><span class="status-badge status-${student.RelationshipStatus.toLowerCase()}">${student.RelationshipStatus}</span></span>
-                </div>
-            `;
-            modal.style.display = 'block';
-        }
-
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        // Close modal with escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                modal.style.display = 'none';
-            }
         });
     </script>
     
