@@ -138,7 +138,7 @@ $conn->close();
             <i class="fa-solid fa-lightbulb"></i>
             <span>Research Idea</span>
         </a>
-        <a href="#" class="menu-item">
+        <a href="Document.php" class="menu-item">
             <i class="fa-solid fa-passport"></i>
             <span>Documents</span>
         </a>
@@ -150,7 +150,7 @@ $conn->close();
             <i class="fa-solid fa-file-pen"></i>
             <span>Exam Tracker</span>
         </a>
-        <a href="#" class="menu-item">
+        <a href="Activity.php" class="menu-item">
                 <i class="bi bi-activity"></i>
             <span>Activity</span>
         </a>
@@ -165,6 +165,10 @@ $conn->close();
         <a href="MentorFilter.php" class="menu-item">
             <i class="fa-solid fa-chalkboard-user"></i>
             <span>Mentors Available</span>
+        </a>
+        <a href="logout.php" class="menu-item">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
         </a>
     </div>
     <div class="sidebar-footer">

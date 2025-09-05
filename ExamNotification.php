@@ -118,21 +118,31 @@ $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     // Calculate days remaining - simple method
-                    $today = date('Y-m-d');
                     $exam_date = date('Y-m-d', strtotime($row["date"]));
-                    $diff_days = (strtotime($exam_date) - strtotime($today)) / (60 * 60 * 24);
-                    
-                    // Determine days text and CSS class
-                    if ($diff_days == 0) {
-                        $days_text = "Today";
-                        $days_class = "today";
-                    } elseif ($diff_days == 1) {
-                        $days_text = "Tomorrow";
-                        $days_class = "tomorrow";
+
+                    echo '<script>
+                    var examDate = new Date("' . $exam_date . '");
+                    var today = new Date();
+                    today.setHours(0,0,0,0);
+                    examDate.setHours(0,0,0,0);
+                    var diffTime = examDate - today;
+                    var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Subtract 1 to exclude exam day
+
+                    var daysText, daysClass;
+                    if (diffDays == 0) {
+                        daysText = "Today";
+                        daysClass = "today";
+                    } else if (diffDays == 1) {
+                        daysText = "Tomorrow";
+                        daysClass = "tomorrow";
+                    } else if (diffDays < 0) {
+                        daysText = "Past";
+                        daysClass = "past";
                     } else {
-                        $days_text = round($diff_days) . " days";
-                        $days_class = "upcoming";
+                        daysText = diffDays + " days";
+                        daysClass = "upcoming";
                     }
+                    </script>';
                     
                     echo '<div class="exam-item">';
                     echo '<div class="exam-info">';
@@ -140,7 +150,11 @@ $result = $conn->query($sql);
                     echo '<div class="exam-date">📅 ' . date('l, F j, Y', strtotime($row["date"])) . '</div>';
                     echo '<div class="exam-status">Status: ' . $row["status"] . '</div>';
                     echo '</div>';
-                    echo '<div class="days-remaining ' . $days_class . '">Remaining Days:  ' . $days_text . '</div>';
+                    echo '<div class="days-remaining" id="days-' . $row["id"] . '">Remaining Days: <span class="days-value"></span></div>';
+                    echo '<script>
+                    document.getElementById("days-' . $row["id"] . '").querySelector(".days-value").textContent = daysText;
+                    document.getElementById("days-' . $row["id"] . '").className += " " + daysClass;
+                    </script>';
                     echo '</div>';
                 }
             } else {
@@ -154,7 +168,17 @@ $result = $conn->query($sql);
         </div>
 
         <div class="notification-footer">
-            Last updated: <?php echo date('M j, Y \a\t g:i A'); ?>
+            Last updated: <span id="last-updated"></span>
+            <script>
+            document.getElementById('last-updated').textContent = new Date().toLocaleString('en-US', {
+                month: 'short',
+                day: 'numeric', 
+                year: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+            </script>
         </div>
     </div>
 </body>
