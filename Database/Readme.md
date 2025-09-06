@@ -1,4 +1,9 @@
 # <h1 align = "center"> Database Queries </h1>
+## 00. Create & Use Database
+```sql
+CREATE DATABASE Project_database;
+USE Project_database;
+```
 
 ## 01. Create LOGIN CREDENTIALS table
 ```sql
