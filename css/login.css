@@ -1,0 +1,375 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: #ffffff; /* White background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated background geometric shapes */
+.bg-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.shape {
+    position: absolute;
+    background: #6366f1; /* Your specified light purple color */
+    opacity: 0.3; /* Fixed opacity - no fading */
+    animation: moveShapes 15s ease-in-out infinite;
+}
+
+/* Massive polygonal shapes - only parts will be visible */
+.shape:nth-child(1) {
+    width: 800px;
+    height: 600px;
+    top: -200px;
+    left: -300px;
+    transform: rotate(15deg);
+    clip-path: polygon(20% 0%, 80% 10%, 90% 70%, 60% 100%, 10% 90%, 0% 40%);
+    animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+    width: 900px;
+    height: 700px;
+    top: -100px;
+    right: -400px;
+    transform: rotate(-25deg);
+    clip-path: polygon(30% 0%, 100% 30%, 85% 85%, 25% 100%, 0% 60%, 15% 20%);
+    animation-delay: 0s;
+}
+
+.shape:nth-child(3) {
+    width: 1000px;
+    height: 800px;
+    bottom: -300px;
+    left: -200px;
+    transform: rotate(45deg);
+    clip-path: polygon(15% 15%, 85% 0%, 100% 60%, 75% 100%, 0% 85%, 10% 50%);
+    animation-delay: 0s;
+}
+
+/* Add more massive shapes */
+.shape:nth-child(4) {
+    width: 700px;
+    height: 500px;
+    top: 30%;
+    right: -250px;
+    transform: rotate(-35deg);
+    clip-path: polygon(25% 0%, 100% 25%, 80% 80%, 20% 100%, 0% 50%, 30% 15%);
+    animation-delay: 0s;
+}
+
+.shape:nth-child(5) {
+    width: 850px;
+    height: 650px;
+    bottom: -200px;
+    left: 50%;
+    transform: rotate(60deg);
+    clip-path: polygon(40% 0%, 100% 40%, 90% 90%, 30% 100%, 0% 60%, 20% 20%);
+    animation-delay: 0s;
+}
+
+@keyframes moveShapes {
+    0% {
+        transform: translateX(0px) translateY(0px) rotate(var(--initial-rotation, 0deg));
+    }
+    25% {
+        transform: translateX(50px) translateY(-30px) rotate(calc(var(--initial-rotation, 0deg) + 90deg));
+    }
+    50% {
+        transform: translateX(-30px) translateY(-60px) rotate(calc(var(--initial-rotation, 0deg) + 180deg));
+    }
+    75% {
+        transform: translateX(-60px) translateY(30px) rotate(calc(var(--initial-rotation, 0deg) + 270deg));
+    }
+    100% {
+        transform: translateX(0px) translateY(0px) rotate(calc(var(--initial-rotation, 0deg) + 360deg));
+    }
+}
+
+.login-container {
+    background: #aaacff; /* Light purple background */
+    backdrop-filter: blur(20px);
+    border: 1px solid #e6e1ff;
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 25px 50px rgba(102, 126, 234, 0.1);
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.8s ease-out;
+}
+
+/* Logo section styling */
+.logo-section {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo {
+    max-width: 360px;
+    max-height: 240px;
+    width: auto;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.2));
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h1 {
+    color: #333333; /* Dark text for readability */
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-shadow: none;
+}
+
+.login-header p {
+    color: #666666;
+    font-size: 1rem;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 20px;
+    background: #faf9ff; /* Very light purple background */
+    border: 2px solid #e6e1ff;
+    border-radius: 50px;
+    color: #4c1d95; /* Dark purple text color */
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: #999999;
+}
+
+.form-group input:focus {
+    border-color: #c4b5fd; /* Light purple border on focus */
+    background: #f3f0ff; /* Slightly deeper light purple on focus */
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(196, 181, 253, 0.2);
+}
+
+.form-group input:hover {
+    border-color: #d4c5fd; /* Light purple hover border */
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    color: #666666;
+    font-size: 0.9rem;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+.forgot-password {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #764ba2;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #6f71e9, #4f46e5);
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(196, 181, 253, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.login-btn:hover::before {
+    left: 100%;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(167, 139, 250, 0.4);
+    background: linear-gradient(45deg, #4f46e5, #6f71e9);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.divider {
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
+    color: #999999;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e6e1ff;
+}
+
+.divider span {
+    background: #f5f3ff;
+    backdrop-filter: blur(10px);
+    padding: 0 15px;
+    position: relative;
+}
+
+.social-login {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 12px;
+    background: #faf9ff;
+    border: 1px solid #e6e1ff;
+    border-radius: 12px;
+    color: #333333;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.social-btn:hover {
+    background: #f3f0ff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(196, 181, 253, 0.2);
+}
+
+.signup-link {
+    text-align: center;
+    color: #666666;
+    font-size: 0.9rem;
+}
+
+.signup-link a {
+    color: #423bda;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.signup-link a:hover {
+    color: #764ba2;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+    
+    .login-header h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Additional styles for signup page */
+.terms-link {
+    color: #667eea;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+    margin-left: 4px;
+}
+
+.terms-link:hover {
+    color: #764ba2;
+}
+
+.remember-me a {
+    color: #667eea;
+}
+
+/* Adjust checkbox styling for terms agreement */
+.login-options .remember-me {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Make signup container slightly taller for extra fields */
+body:has(.login-container .login-header h1:contains("Create Account")) .login-container {
+    max-width: 440px;
+}
