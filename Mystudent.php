@@ -133,7 +133,7 @@ function compute_progress_for_student($conn, $student_id) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Apprentices Status | CareerHigh</title>
-
+    <link rel="icon" type="image/png" href="img/Landing_logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Use existing roadmap CSS for consistent style -->
     <link rel="stylesheet" href="css/Roadmap.css">

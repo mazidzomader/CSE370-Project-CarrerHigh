@@ -98,11 +98,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['col
 }
 
 // Fetch ONLY available collaborations
-$sql = "SELECT CollabID, Description, ProjectName, Startdate, MaxPeople, CurrentPeople
-        FROM research_collaboration
-        WHERE CurrentPeople < MaxPeople
-        ORDER BY Startdate ASC";
-$result = $conn->query($sql);
+$sql = "SELECT rc.CollabID, rc.Description, rc.ProjectName, rc.Startdate, rc.MaxPeople, rc.CurrentPeople
+        FROM research_collaboration rc
+        LEFT JOIN COLLABORATION_PARTICIPANTS cp ON rc.CollabID = cp.CollabID AND cp.UserID = ?
+        WHERE rc.CurrentPeople < rc.MaxPeople AND cp.UserID IS NULL
+        ORDER BY rc.Startdate ASC";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create') {
     $projectName = $_POST['project_name'];
@@ -125,6 +129,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Get user type from session, default to Student if not set
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : 'Student';
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -132,6 +137,7 @@ $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : 'Student';
     <meta charset="UTF-8">
     <title>Research Collaborations</title>
     <link rel="stylesheet" href="css/Research Collaboration.css">
+    <link rel="icon" type="image/png" href="img/Landing_logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 

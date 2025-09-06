@@ -97,6 +97,7 @@ $edit_idea_id = isset($_GET['edit_idea']) ? (int)$_GET['edit_idea'] : null;
 <head>
     <title>Research Ideas</title>
     <link rel="stylesheet" type="text/css" href="css/research.css">
+    <link rel="icon" type="image/png" href="img/Landing_logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
