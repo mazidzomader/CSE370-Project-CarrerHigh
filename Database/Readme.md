@@ -58,9 +58,9 @@ CREATE TABLE MENTOR_LANGUAGES (
 ```
 ## 06. Mentor's Expertise (Multivalued attribute)
 ```sql
-CREATE TABLE `mentor_expertise` (
-  `MentorID` int(11) NOT NULL,
-  `ExpertiseArea` varchar(100) NOT NULL
+CREATE TABLE mentor_expertise (
+    MentorID int(11) NOT NULL,
+    ExpertiseArea varchar(100) NOT NULL
 );
 ```
 ## 07. Junction table for Mentor-Student relationships (Many-to-Many)
@@ -152,18 +152,18 @@ FOREIGN KEY (user_id) REFERENCES user(UserID) ON DELETE CASCADE
 
 ## 13. Research Collaboration
 ```sql
-CREATE TABLE `research_collaboration` (
-  `CollabID` int(11) NOT NULL,
-  `Description` text NOT NULL,
-  `ProjectName` varchar(200) NOT NULL,
-  `Startdate` date NOT NULL,
-  `MaxPeople` int(11) NOT NULL,
-  `CurrentPeople` int(11) NOT NULL
+CREATE TABLE research_collaboration (
+    CollabID int(11) NOT NULL,
+    Description text NOT NULL,
+    ProjectName varchar(200) NOT NULL,
+    Startdate date NOT NULL,
+    MaxPeople int(11) NOT NULL,
+    CurrentPeople int(11) NOT NULL
 );
 ```
 ## 14. Insert data into Collaboration table
 ```sql
-INSERT INTO `research_collaboration` (`CollabID`, `Description`, `ProjectName`, `Startdate`, `MaxPeople`, `CurrentPeople`) VALUES
+INSERT INTO research_collaboration (CollabID, Description, ProjectName, Startdate, MaxPeople, CurrentPeople) VALUES
 (57, 'Developing machine learning algorithms for predictive healthcare analytics using patient data to improve diagnosis accuracy', 'AI-Driven Healthcare Diagnostics', '2024-01-15', 6, 4),
 (58, 'Research on sustainable energy solutions using solar panel efficiency optimization techniques', 'Solar Energy Optimization Project', '2024-02-01', 5, 3),
 (59, 'Study of blockchain technology applications in supply chain management for transparency', 'Blockchain Supply Chain Analytics', '2024-01-20', 4, 2),
@@ -223,20 +223,20 @@ INSERT INTO `research_collaboration` (`CollabID`, `Description`, `ProjectName`, 
 ```
 ## 15. Track Collaboration Participants
 ```sql
-CREATE TABLE `collaboration_participants` (
-  `CollabID` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL
+CREATE TABLE collaboration_participants (
+  CollabID int(11) NOT NULL,
+  UserID int(11) NOT NULL
 );
 ```
 ## 16. University
 ```sql
 CREATE TABLE `university` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(100) DEFAULT NULL,
-  `Department` varchar(100) DEFAULT NULL,
-  `Funding` decimal(12,2) DEFAULT NULL,
-  `admission_Email` varchar(150) DEFAULT NULL,
-  `Last_Date` date DEFAULT NULL,
-  `Country` varchar(100) DEFAULT NULL
+  ID int(11) NOT NULL,
+  Name varchar(100) DEFAULT NULL,
+  Department varchar(100) DEFAULT NULL,
+  Funding decimal(12,2) DEFAULT NULL,
+  admission_Email varchar(150) DEFAULT NULL,
+  Last_Date date DEFAULT NULL,
+  Country varchar(100) DEFAULT NULL
 );
 ```

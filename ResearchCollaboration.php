@@ -98,11 +98,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['col
 }
 
 // Fetch ONLY available collaborations
-$sql = "SELECT CollabID, Description, ProjectName, startdate, MaxPeople, CurrentPeople
-        FROM RESEARCH_COLLABORATION
+$sql = "SELECT CollabID, Description, ProjectName, Startdate, MaxPeople, CurrentPeople
+        FROM research_collaboration
         WHERE CurrentPeople < MaxPeople
-        ORDER BY startdate ASC";
+        ORDER BY Startdate ASC";
 $result = $conn->query($sql);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create') {
+    $projectName = $_POST['project_name'];
+    $description = $_POST['description'];
+    $maxPeople = (int) $_POST['max_people'];
+    $startDate = $_POST['start_date'];
+    
+    $stmt = $conn->prepare("INSERT INTO research_collaboration (Description, ProjectName, Startdate, MaxPeople, CurrentPeople) VALUES (?, ?, ?, ?, 0)");
+    $stmt->bind_param("sssi", $description, $projectName, $startDate, $maxPeople);
+    $stmt->execute();
+    $stmt->close();
+    
+    $message = "Collaboration created successfully!";
+    $messageType = "success";
+}
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -247,7 +262,44 @@ $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : 'Student';
 
     <div class="container">
         <h1>Research Collaboration Opportunities</h1>
-
+        <div class="create-collab-section">
+    <button class="create-btn" onclick="toggleCreateForm()">
+        <i class="fas fa-plus"></i> Create New Collaboration
+    </button>
+    
+    <div class="create-form-container" id="createForm" style="display: none;">
+        <form method="post" class="create-collab-form">
+            <input type="hidden" name="action" value="create">
+            
+            <div class="form-group">
+                <label for="project_name">Project Name</label>
+                <input type="text" id="project_name" name="project_name" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" class="form-textarea" required rows="4"></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="max_people">Max People</label>
+                    <input type="number" id="max_people" name="max_people" class="form-input" required min="1" value="5">
+                </div>
+                
+                <div class="form-group">
+                    <label for="start_date">Start Date</label>
+                    <input type="date" id="start_date" name="start_date" class="form-input" required>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="cancel-btn" onclick="toggleCreateForm()">Cancel</button>
+                <button type="submit" class="submit-btn">Create Collaboration</button>
+            </div>
+        </form>
+    </div>
+</div>
         <?php if ($message): ?>
             <div class="banner <?= htmlspecialchars($messageType) ?>"><?= htmlspecialchars($message) ?></div>
         <?php endif; ?>
@@ -260,7 +312,7 @@ $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : 'Student';
                         <p class="desc"><?= nl2br(htmlspecialchars($row['Description'])) ?></p>
 
                         <div class="card-meta">
-                            <span class="badge date">Start: <?= htmlspecialchars($row['startdate']) ?></span>
+                            <span class="badge date">Start: <?= htmlspecialchars($row['Startdate']) ?></span>
                             <span class="badge">
                                 Members: <?= (int)$row['CurrentPeople'] ?> / <?= (int)$row['MaxPeople'] ?>
                             </span>
@@ -281,6 +333,14 @@ $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : 'Student';
         </div>
     </div>
     <script>
+        function toggleCreateForm() {
+    const form = document.getElementById('createForm');
+    if (form.style.display === 'none' || form.style.display === '') {
+        form.style.display = 'block';
+    } else {
+        form.style.display = 'none';
+        }
+    }
 
         // Sidebar toggle functionality
         const toggleBtn = document.querySelector('.toggle-btn');
