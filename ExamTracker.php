@@ -178,9 +178,9 @@ $exams = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container">
         <div class="header">
             <h2>📋 Exam Tracking</h2>
-            <div class="user-info">
+            <!-- <div class="user-info">
                 <span>Welcome, User #<?= $user_id ?></span>
-            </div>
+            </div> -->
         </div>
         
         <div class="content">
