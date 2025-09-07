@@ -3,6 +3,14 @@ require_once("connect.php");
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+$message = "";
+$messageType = "info";
+
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    $messageType = $_SESSION['messageType'];
+    unset($_SESSION['message'], $_SESSION['messageType']);
+}
 
 // Get user type from session, default to Student if not set
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : 'Student';
@@ -89,6 +97,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['col
             $conn->commit();
             $message = "Added to profile successfully!";
             $messageType = "success";
+            header("Location: ResearchCollaboration.php");
+            exit();
         } catch (Exception $e) {
             $conn->rollback();
             $message = $e->getMessage();
@@ -121,6 +131,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     
     $message = "Collaboration created successfully!";
     $messageType = "success";
+
+    header("Location: ResearchCollaboration.php");
+    exit();
 }
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -129,7 +142,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Get user type from session, default to Student if not set
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : 'Student';
-$stmt->close();
+// $stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
