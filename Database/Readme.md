@@ -171,12 +171,13 @@ CREATE TABLE collaboration_participants (
 ## 15. University
 ```sql
 CREATE TABLE university (
-  ID int(11) NOT NULL,
+  ID int(11) NOT NULL AUTO_INCREMENT,
   Name varchar(100) DEFAULT NULL,
   Department varchar(100) DEFAULT NULL,
   Funding decimal(12,2) DEFAULT NULL,
   admission_Email varchar(150) DEFAULT NULL,
   Last_Date date DEFAULT NULL,
-  Country varchar(100) DEFAULT NULL
+  Country varchar(100) DEFAULT NULL,
+  PRIMARY KEY (ID)
 );
 ```
