@@ -112,11 +112,11 @@ $conn->close();
     <div class="sidebar">
         <div class="sidebar-header">
             <div class="logo">CareerHigh</div>
-            <button class="toggle-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-        <div class="menu-items">
+        <button class="toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <div class="menu-items">
             <a href="mentordash.php" class="menu-item">
                 <i class="fas fa-home"></i>
                 <span>Dashboard</span>
@@ -128,6 +128,10 @@ $conn->close();
             <a href="Mystudent.php" class="menu-item">
                     <i class="fas fa-users"></i>
                 <span>My Students</span>
+            </a>
+            <a href="ManageUniversity.php" class="menu-item">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                <span>Manage Universities</span>
             </a>
             <a href="research_idea.php" class="menu-item">
                 <i class="fa-solid fa-lightbulb"></i>
@@ -144,7 +148,7 @@ $conn->close();
             <a href="logout.php" class="menu-item">
                 <i class="fas fa-sign-out-alt"></i>
             <span>Logout</span>
-        </a>
+            </a>
         </div>
         <div class="sidebar-footer">
             <span>CareerHigh<br>v1.0</span>

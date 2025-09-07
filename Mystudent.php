@@ -142,11 +142,11 @@ function compute_progress_for_student($conn, $student_id) {
     <div class="sidebar">
         <div class="sidebar-header">
             <div class="logo">CareerHigh</div>
-            <button class="toggle-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-        <div class="menu-items">
+        <button class="toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <div class="menu-items">
             <a href="mentordash.php" class="menu-item">
                 <i class="fas fa-home"></i>
                 <span>Dashboard</span>
@@ -156,24 +156,28 @@ function compute_progress_for_student($conn, $student_id) {
                 <span>Edit Profile</span>
             </a>
             <a href="Mystudent.php" class="menu-item">
-                <i class="fas fa-users"></i>
+                    <i class="fas fa-users"></i>
                 <span>My Students</span>
+            </a>
+            <a href="ManageUniversity.php" class="menu-item">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                <span>Manage Universities</span>
             </a>
             <a href="research_idea.php" class="menu-item">
                 <i class="fa-solid fa-lightbulb"></i>
                 <span>Research Idea</span>
             </a>
             <a href="ResearchCollaboration.php" class="menu-item">
-                <i class="fa-solid fa-puzzle-piece"></i>
+                    <i class="fa-solid fa-puzzle-piece"></i>
                 <span>Collaboration</span>
             </a>
             <a href="MyCollab.php" class="menu-item">
-                <i class="fas fa-handshake"></i>
+                    <i class="fas fa-handshake"></i>
                 <span>My Collaboration</span>
             </a>
             <a href="logout.php" class="menu-item">
                 <i class="fas fa-sign-out-alt"></i>
-                <span>Logout</span>
+            <span>Logout</span>
             </a>
         </div>
         <div class="sidebar-footer">

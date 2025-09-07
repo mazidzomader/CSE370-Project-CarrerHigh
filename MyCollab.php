@@ -150,37 +150,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['col
     <?php elseif ($userType === 'Mentor'): ?>
     <!-- Mentor Menu Items -->
         <div class="menu-items">
-        <a href="mentordash.php" class="menu-item">
-            <i class="fas fa-home"></i>
-            <span>Dashboard</span>
-        </a>
-        <a href="MentorProfile.php" class="menu-item">
-            <i class="fas fa-user"></i>
-            <span>Edit Profile</span>
-        </a>
-        <a href="Mystudent.php" class="menu-item">
-                <i class="fas fa-handshake"></i>
-            <span>My Students</span>
-        </a>
-        <a href="research_idea.php" class="menu-item">
-            <i class="fa-solid fa-lightbulb"></i>
-            <span>Research Idea</span>
-        </a>
-        <a href="ResearchCollaboration.php" class="menu-item">
-            <i class="fa-solid fa-puzzle-piece"></i>
-            <span>Collaboration</span>
-        </a>
-        <a href="MyCollab.php" class="menu-item">
-            <i class="fas fa-handshake"></i>
-            <span>My Collaboration</span>
-        </a>
-        <a href="logout.php" class="menu-item">
-            <i class="fas fa-sign-out-alt"></i>
+            <a href="mentordash.php" class="menu-item">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="MentorProfile.php" class="menu-item">
+                <i class="fas fa-user"></i>
+                <span>Edit Profile</span>
+            </a>
+            <a href="Mystudent.php" class="menu-item">
+                    <i class="fas fa-users"></i>
+                <span>My Students</span>
+            </a>
+            <a href="ManageUniversity.php" class="menu-item">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                <span>Manage Universities</span>
+            </a>
+            <a href="research_idea.php" class="menu-item">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span>Research Idea</span>
+            </a>
+            <a href="ResearchCollaboration.php" class="menu-item">
+                    <i class="fa-solid fa-puzzle-piece"></i>
+                <span>Collaboration</span>
+            </a>
+            <a href="MyCollab.php" class="menu-item">
+                    <i class="fas fa-handshake"></i>
+                <span>My Collaboration</span>
+            </a>
+            <a href="logout.php" class="menu-item">
+                <i class="fas fa-sign-out-alt"></i>
             <span>Logout</span>
-        </a>
-    </div>
-    <div class="sidebar-footer">
-        <span>CareerHigh<br>v1.0</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <span>CareerHigh<br>v1.0</span>
+        </div>
     </div>
     
     <?php else: ?>
