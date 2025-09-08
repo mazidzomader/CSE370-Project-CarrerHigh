@@ -8,6 +8,13 @@ if (!isset($_SESSION['user_id'])) {
 $message = "";
 $errorMessage = "";
 
+if (isset($_GET['added']) && $_GET['added'] == 1) { 
+    $message = "Task added successfully!";
+} 
+if (isset($_GET['deleted']) && $_GET['deleted'] == 1) {
+    $message = "Task deleted successfully!";
+}
+
 // Handle task creation
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_task'])) {
     $title = trim($_POST['title']);
