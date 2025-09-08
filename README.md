@@ -83,5 +83,11 @@
 ![Login](img/Login.png)
 ![Signup](img/Signup.png)
 ![Dashboard](img/Dashboard.png)
+![Roadmap](img/Roadmap.png)
+![Activities](img/Activities.png)
+![Document](img/Document.png)
+![Exam](img/Exam.png)
+![Ideas](img/Research%20Ideas.png)
+
 
 
