@@ -39,7 +39,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_mentor' && isset($_POST
     $studentData = mysqli_fetch_assoc($result);
     mysqli_stmt_close($checkStmt);
     
-    if ($studentData && $studentData['MentorID'] !== null) {
+    if ($studentData && $studentData['MentorID'] !== null) { // If mentor is already assigned, no more increment in code, Just exit
         echo json_encode(['success' => false, 'message' => 'Mentor already assigned']);
         exit();
     }

@@ -23,15 +23,15 @@ $userId = (int) $_SESSION['user_id'];
 
 // CSRF token
 if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Security token generation
 }
 
 $servername = "localhost";
 $username   = "root";
 $password   = "";
-$dbname     = "Project_database"; // <- change if needed
+$dbname     = "Project_database"; 
+$conn = new mysqli($servername, $username, $password, $dbname); // Reconnecting if needed
 
-$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -42,30 +42,30 @@ $messageType = "info";
 // Handle Add to Profile
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['collab_id'], $_POST['csrf_token']) && $_POST['action'] === 'add') {
     if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-        $message = "Invalid request token.";
+        $message = "Invalid request token."; // Checking token
         $messageType = "error";
     } else {
-        $collabId = (int) $_POST['collab_id'];
+        $collabId = (int) $_POST['collab_id']; // Getting the collaboration id
         try {
             $conn->begin_transaction();
 
             // Lock the collaboration row to avoid race conditions
-            $stmt = $conn->prepare("SELECT CurrentPeople, MaxPeople FROM RESEARCH_COLLABORATION WHERE CollabID = ? FOR UPDATE");
-            $stmt->bind_param("i", $collabId);
+            $stmt = $conn->prepare("SELECT CurrentPeople, MaxPeople FROM RESEARCH_COLLABORATION WHERE CollabID = ? FOR UPDATE"); // Locks the query, only for current user
+            $stmt->bind_param("i", $collabId); // placeholder filled by binding parameter of this session
             $stmt->execute();
-            $stmt->bind_result($current, $max);
-            if (!$stmt->fetch()) {
+            $stmt->bind_result($current, $max); //getting result, stored in current and max variable
+            if (!$stmt->fetch()) { // if fetching is false, if statement is true to close the statement and throw nothing is in database regarding this query
                 $stmt->close();
                 throw new Exception("Collaboration not found.");
             }
             $stmt->close();
 
-            if ($current >= $max) {
+            if ($current >= $max) { // checking members is full
                 throw new Exception("This collaboration is full.");
             }
 
             // Prevent duplicate join
-            $stmt = $conn->prepare("SELECT 1 FROM COLLABORATION_PARTICIPANTS WHERE CollabID = ? AND UserID = ?");
+            $stmt = $conn->prepare("SELECT 1 FROM COLLABORATION_PARTICIPANTS WHERE CollabID = ? AND UserID = ?"); // Structuring query to see user is already in the collaboration
             $stmt->bind_param("ii", $collabId, $userId);
             $stmt->execute();
             $stmt->store_result();
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['col
             }
 
             // Insert participant
-            $stmt = $conn->prepare("INSERT INTO COLLABORATION_PARTICIPANTS (CollabID, UserID) VALUES (?, ?)");
+            $stmt = $conn->prepare("INSERT INTO COLLABORATION_PARTICIPANTS (CollabID, UserID) VALUES (?, ?)"); // Insering into database
             $stmt->bind_param("ii", $collabId, $userId);
             if (!$stmt->execute()) {
                 $stmt->close();
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['col
             $stmt->close();
 
             // Increment current people
-            $stmt = $conn->prepare("UPDATE RESEARCH_COLLABORATION SET CurrentPeople = CurrentPeople + 1 WHERE CollabID = ?");
+            $stmt = $conn->prepare("UPDATE RESEARCH_COLLABORATION SET CurrentPeople = CurrentPeople + 1 WHERE CollabID = ?"); // Updating current member count
             $stmt->bind_param("i", $collabId);
             if (!$stmt->execute()) {
                 $stmt->close();
@@ -95,14 +95,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['col
             $stmt->close();
 
             $conn->commit();
-            $message = "Added to profile successfully!";
+            $message = "Added to profile successfully!"; // Struncturing message
             $messageType = "success";
             header("Location: ResearchCollaboration.php");
-            exit();
+            exit(); // Exiting to prevent refresh issues
         } catch (Exception $e) {
             $conn->rollback();
             $message = $e->getMessage();
-            $messageType = "error";
+            $messageType = "error"; // If everything fails, roll back everything and show error
         }
     }
 }
@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $maxPeople = (int) $_POST['max_people'];
     $startDate = $_POST['start_date'];
     
-    $stmt = $conn->prepare("INSERT INTO research_collaboration (Description, ProjectName, Startdate, MaxPeople, CurrentPeople) VALUES (?, ?, ?, ?, 0)");
+    $stmt = $conn->prepare("INSERT INTO research_collaboration (Description, ProjectName, Startdate, MaxPeople, CurrentPeople) VALUES (?, ?, ?, ?, 0)"); // Adding New collaboration 
     $stmt->bind_param("sssi", $description, $projectName, $startDate, $maxPeople);
     $stmt->execute();
     $stmt->close();

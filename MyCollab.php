@@ -12,7 +12,7 @@ $userId = (int) $_SESSION['user_id'];
 $servername = "localhost";
 $username   = "root";
 $password   = "";
-$dbname     = "Project_database"; // <- change if needed
+$dbname     = "Project_database"; // <- Reconnecting if needed
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['col
     
     if ($deleteStmt->execute()) {
         // Update current people count
-        $updateStmt = $conn->prepare("UPDATE RESEARCH_COLLABORATION SET CurrentPeople = CurrentPeople - 1 WHERE CollabID = ?");
+        $updateStmt = $conn->prepare("UPDATE RESEARCH_COLLABORATION SET CurrentPeople = CurrentPeople - 1 WHERE CollabID = ?"); // Reducing current people in collaboration
         $updateStmt->bind_param("i", $collabId);
         $updateStmt->execute();
         $updateStmt->close();

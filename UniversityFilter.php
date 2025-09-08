@@ -3,7 +3,7 @@ require_once("connect.php");
 $servername = 'localhost';
 $username = "root";
 $password = "";
-$dbname = "Project_database";
+$dbname = "Project_database"; // Reconnecting, No error will be tolerated
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
