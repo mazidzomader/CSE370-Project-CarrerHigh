@@ -54,19 +54,13 @@
 
 | Sl | Feature                | Type | Notes |
 |----|------------------------|---------------------------------------------------|-------|
-| 01 | Roadmap Edit           | Update, Delete                                    | Mentor can refine or remove student roadmap parts. |
+| 01 | Roadmap View           | Update, Delete                                    | Mentor can refine or remove student roadmap parts. |
 | 02 | Collaboration          | Create, Read, Update                              | Post/curate collaborations; update statuses. |
-
+| 03 | University Edit          | Create, Read, Update, Delete                              | Post/curate university; update, delete already inserted universities |
+| 04 | Task View          | Read                              | Can See the task and its update of his own students |
 ---
 
-## 🛡️ Admin
 
-| Sl | Feature            | Type  | Notes |
-|----|--------------------|---------------------------------------------------|-------|
-| 01 | Role Management    | Update                                            | Promote/demote roles (Student/Mentor/Admin). |
-| 02 | Approve Mentorship | Update                                            | Approve mentor status & links to students. |
-
----
 
 ## 👥 Team
 
