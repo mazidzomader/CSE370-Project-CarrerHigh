@@ -238,6 +238,12 @@ function compute_progress_for_student($conn, $student_id) {
                                             <span style="opacity:0.85">Tasks: <?php echo $task_text; ?> | Docs: <?php echo $doc_text; ?></span>
                                         </div>
                                     </div>
+                                    <div style="width:120px; text-align:right;">
+                                        <!-- Optional actions -->
+                                        <a href="StudentDetails.php?id=<?php echo $appr['StudentID']; ?>" class="menu-item" style="display:inline-flex; align-items:center; gap:8px;">
+                                            <i class="fas fa-eye"></i> View
+                                        </a>
+                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
