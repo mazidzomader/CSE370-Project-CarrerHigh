@@ -19,8 +19,9 @@
 - 🗺️ Roadmaps & tasks (create, update, delete)  
 - 📚 Research idea vault & collaboration  
 - 📝 Document & exam tracking with alarm/reminders (read-side)  
-- 👥 Mentor tools for editing roadmaps & collaborations  
-- 🛠️ Admin tools for role management & mentorship approval  
+- 👥 Mentor tools for viewing progress for his students through roadmaps & collaborations  
+- 🛠️ Co-curricular Activities tracking
+- 🏛️ Find the best university, by your own choice  
 
 ---
 
